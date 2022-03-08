@@ -1,0 +1,46 @@
+---
+
+- name: GET VARS
+  hosts: all
+  gather_facts: no
+  strategy: "{{ gameplan | default('free') }}"
+  vars_files:
+    - 'vars/vars.yml'
+  serial: "{{ howmany | default(0) | int }}"
+
+  tasks:
+  - name: SHOW vars
+    debug:
+      msg: "{{ vars }}"
+    tags:
+      - vars
+
+  - name: SHOW environment
+    debug:
+      msg: "{{ environment }}"
+    tags:
+      - environment
+
+  - name: SHOW group_names
+    debug:
+      msg: "{{ group_names }}"
+    tags:
+      - group_names
+
+  - name: SHOW groups
+    debug:
+      msg: "{{ groups }}"
+    tags:
+      - groups
+
+  - name: SHOW hostvars
+    debug:
+      msg: "{{ hostvars }}"
+    tags:
+      - hostvars
+
+  - name: SHOW inventory_hostname
+    debug: 
+      msg: "{{ inventory_hostname }}"
+    tags:
+      - inventory_hostname
